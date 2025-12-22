@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería - Andrew Jaleo</title>
+  <style>
+    body { font-family: Arial; background: #000; color: #fff; text-align: center; padding: 2rem; }
+    .galeria { position: relative; max-width: 800px; margin: auto; }
+    .imagen { width: 100%; border-radius: 12px; }
+    .flechas { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.5); color: white; border: none; padding: 1rem; font-size: 2rem; cursor: pointer; }
+    .izq { left: 10px; }
+    .der { right: 10px; }
+    .texto { margin-top: 1rem; font-size: 1.1rem; }
+  </style>
+</head>
+<body>
+  <h1 id="tituloGaleria">Galería</h1>
+  <div class="galeria">
+    <img id="imagen" class="imagen" src="" alt="Obra">
+    <button class="flechas izq" onclick="cambiarImagen(-1)">‹</button>
+    <button class="flechas der" onclick="cambiarImagen(1)">›</button>
+  </div>
+  <div id="texto" class="texto"></div>
+
+  <script>
+    const obras = [
+      // Ejemplo: 8 galerías × 10 obras
+      { titulo: "Obra 1", imagen: "https://i.imgur.com/1.jpg", medidas: "100×150 cm", texto: "Descripción de la obra 1" },
+      { titulo: "Obra 2", imagen: "https://i.imgur.com/2.jpg", medidas: "80×120 cm", texto: "Descripción de la obra 2" },
+      // ... (80 obras en total)
+    ];
+
+    let indice = 0;
+    let galeriaActual = parseInt(localStorage.getItem("galeriaActual")) || 0;
+    const inicio = galeriaActual * 10;
+    const fin = inicio + 10;
+
+    function cambiarImagen(direccion) {
+      indice += direccion;
+      if (indice < 0) indice = 9;
+      if (indice > 9) indice = 0;
+      mostrarObra();
+    }
+
+    function mostrarObra() {
+      const obra = obras[inicio + indice];
+      document.getElementById("imagen").src = obra.imagen;
+      document.getElementById("texto").innerHTML = `
+        <strong>${obra.titulo}</strong><br>
+        Medidas: ${obra.medidas}<br>
+        ${obra.texto}
+      `;
+    }
+
+    mostrarObra();
+  </script>
+</body>
+</html>
