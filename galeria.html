@@ -12,14 +12,17 @@
     .izq { left: 10px; }
     .der { right: 10px; }
     .texto { margin-top: 1rem; font-size: 1.1rem; }
+    a.flecha { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.5); color: white; border: none; padding: 1rem; font-size: 2rem; cursor: pointer; text-decoration: none; }
+    a.izq { left: 10px; }
+    a.der { right: 10px; }
   </style>
 </head>
 <body>
   <h1 id="tituloGaleria">Galería</h1>
   <div class="galeria">
     <img id="imagen" class="imagen" src="" alt="Obra">
-    <button class="flechas izq" onclick="cambiarImagen(-1)">‹</button>
-    <button class="flechas der" onclick="cambiarImagen(1)">›</button>
+    <a href="galeria.html" class="flecha izq">‹</a>
+    <a href="galeria.html" class="flecha der">›</a>
   </div>
   <div id="texto" class="texto"></div>
 
